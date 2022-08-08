@@ -367,6 +367,7 @@ class WebView extends StatefulWidget {
   /// Invoked when a page is loading.
   final PageLoadingCallback? onProgress;
 
+  /// Invoked when a page is loading.
   final TitleReceivedCallback onReceivedTitle;
 
   /// Invoked when a web resource has failed to load.

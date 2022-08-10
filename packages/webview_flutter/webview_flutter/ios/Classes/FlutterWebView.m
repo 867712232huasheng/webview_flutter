@@ -118,11 +118,28 @@
     if ([initialUrl isKindOfClass:[NSString class]]) {
       [self loadUrl:initialUrl];
     }
+    [self addObserver];
   }
   return self;
 }
 
+-(void)addObserver{
+    [_webView addObserver:self forKeyPath:kUrlDefine options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath  isEqual: kUrlDefine] ) {
+        [_channel invokeMethod:@"onUrlChange" arguments:@{@"url" : _webView.URL.absoluteString}];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+- (void)removeObserver {
+    [_webView removeObserver:self forKeyPath:kUrlDefine];
+}
 - (void)dealloc {
+ [self removeObserver];
   if (_progressionDelegate != nil) {
     [_progressionDelegate stopObservingProgress:_webView];
   }

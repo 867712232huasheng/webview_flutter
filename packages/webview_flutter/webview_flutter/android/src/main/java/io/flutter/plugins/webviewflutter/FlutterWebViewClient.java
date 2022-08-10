@@ -143,6 +143,12 @@ class FlutterWebViewClient {
     methodChannel.invokeMethod("onPageFinished", args);
   }
 
+  private void onUrlChange(WebView view, String url) {
+    Map<String, Object> args = new HashMap<>();
+    args.put("url", url);
+    methodChannel.invokeMethod("onUrlChange", args);
+  }
+
   void onLoadingProgress(int progress) {
     if (hasProgressTracking) {
       Map<String, Object> args = new HashMap<>();
@@ -198,6 +204,15 @@ class FlutterWebViewClient {
       @Override
       public void onPageStarted(WebView view, String url, Bitmap favicon) {
         FlutterWebViewClient.this.onPageStarted(view, url);
+      }
+
+      @Override
+      public void onLoadResource(WebView view, String url) {
+        super.onLoadResource(view, url);
+        if (!currentUrl.equals(view.getUrl())) {
+          currentUrl =  view.getUrl();
+          FlutterWebViewClient.this.onUrlChange(view, currentUrl);
+        }
       }
 
       @Override

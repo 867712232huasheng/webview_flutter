@@ -33,7 +33,7 @@ abstract class WebViewPlatformCallbacksHandler {
   /// Invoked by [WebViewPlatformController] when a page is loading.
   /// /// Only works when [WebSettings.hasProgressTracking] is set to `true`.
   void onProgress(int progress);
-
+  void onUrlChange(String url);
   /// Report web resource loading error to the host application.
   void onWebResourceError(WebResourceError error);
 }
@@ -537,7 +537,11 @@ abstract class WebViewPlatform {
     WebViewPlatformCreatedCallback? onWebViewPlatformCreated,
     Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers,
   });
-
+  /// Set a cookie for the given url.
+  // Future<bool> setCookie(Map<String, dynamic> args) {
+  //   throw UnimplementedError(
+  //       "WebView setCookie is not implemented on the current platform");
+  // }
   /// Clears all cookies for all [WebView] instances.
   ///
   /// Returns true if cookies were present before clearing, else false.

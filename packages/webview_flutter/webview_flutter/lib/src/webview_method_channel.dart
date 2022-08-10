@@ -46,6 +46,8 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
       case 'onPageStarted':
         _platformCallbacksHandler.onPageStarted(call.arguments['url']!);
         return null;
+      case 'onUrlChange':
+        _platformCallbacksHandler.onUrlChange(call.arguments['url']);
       case 'onWebResourceError':
         _platformCallbacksHandler.onWebResourceError(
           WebResourceError(
@@ -160,6 +162,13 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
   @override
   Future<int> getScrollY() =>
       _channel.invokeMethod<int>("getScrollY").then((result) => result!);
+
+  /// Method channel implementation for [WebViewPlatform.setCookie].
+  // static Future<bool> setCookie(Map<String, dynamic> args) {
+  //   return _cookieManagerChannel
+  //       .invokeMethod<bool>('setCookie', args)
+  //       .then<bool>((dynamic result) => result);
+  // }
 
   /// Method channel implementation for [WebViewPlatform.clearCookies].
   static Future<bool> clearCookies() {

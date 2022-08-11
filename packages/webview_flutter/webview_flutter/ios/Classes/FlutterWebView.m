@@ -7,6 +7,8 @@
 #import "FLTWKProgressionDelegate.h"
 #import "JavaScriptChannelHandler.h"
 
+
+#define kUrlDefine @"URL"
 @implementation FLTWebViewFactory {
   NSObject<FlutterBinaryMessenger>* _messenger;
 }

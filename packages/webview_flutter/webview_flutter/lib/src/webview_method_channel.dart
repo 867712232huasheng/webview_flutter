@@ -48,6 +48,7 @@ class MethodChannelWebViewPlatform implements WebViewPlatformController {
         return null;
       case 'onUrlChange':
         _platformCallbacksHandler.onUrlChange(call.arguments['url']);
+        return null;
       case 'onWebResourceError':
         _platformCallbacksHandler.onWebResourceError(
           WebResourceError(

@@ -587,7 +587,7 @@ class _PlatformCallbacksHandler implements WebViewPlatformCallbacksHandler {
   @override
   void onUrlChange(String url) {
     if (_widget.onUrlChange != null) {
-      _widget.onUrlChange(url);
+      _widget.onUrlChange!(url);
     }
   }
 

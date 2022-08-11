@@ -131,7 +131,8 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath  isEqual: kUrlDefine] ) {
-        [_channel invokeMethod:@"onUrlChange" arguments:@{@"url" : _webView.URL.absoluteString}];
+        [_channel invokeMethod:@"onUrlChange" arguments:[NSDictionary dictionaryWithObjectsAndKeys:_webView.URL.absoluteString,@"url",nil]];
+
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }

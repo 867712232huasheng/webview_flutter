@@ -820,7 +820,12 @@ class CookieManager {
   ///
   /// The default [domain] value is the domain name of [url].
   Future<bool> setCookie(String url, String name, String value,
-      {String domain, String path = "/", int expires, int maxAge, bool secure, bool httpOnly}) async {
+      {String? domain,
+        String? path = "/",
+        int? expires,
+        int? maxAge,
+        bool? secure,
+        bool? httpOnly}) async {
     domain ??= _parseDomainFromUrl(url);
 
     assert(url != null && url.isNotEmpty);
